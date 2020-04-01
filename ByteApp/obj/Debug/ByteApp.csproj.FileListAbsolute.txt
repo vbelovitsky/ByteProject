@@ -1,0 +1,10 @@
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\bin\Debug\ByteApp.exe.config
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\bin\Debug\ByteApp.exe
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\bin\Debug\ByteApp.pdb
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\bin\Debug\ByteLibrary.dll
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\bin\Debug\ByteLibrary.pdb
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\obj\Debug\ByteApp.csprojAssemblyReference.cache
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\obj\Debug\ByteApp.csproj.CoreCompileInputs.cache
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\obj\Debug\ByteApp.csproj.CopyComplete
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\obj\Debug\ByteApp.exe
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteApp\obj\Debug\ByteApp.pdb

@@ -1,0 +1,6 @@
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteLibrary\bin\Debug\ByteLibrary.dll
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteLibrary\bin\Debug\ByteLibrary.pdb
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteLibrary\obj\Debug\ByteLibrary.csprojAssemblyReference.cache
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteLibrary\obj\Debug\ByteLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteLibrary\obj\Debug\ByteLibrary.dll
+C:\Users\User\A\Education\_FCS\Программирование\ПРОЕКТ\ByteProject\ByteLibrary\obj\Debug\ByteLibrary.pdb
