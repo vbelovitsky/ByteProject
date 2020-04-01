@@ -12,9 +12,12 @@ namespace ByteApp
 
 		private static Random rnd = new Random();
 
-
 		private static int MENU_ITEMS = 5; // +1
 
+		/// <summary>
+		/// Запускает меню
+		/// </summary>
+		/// <param name="position"></param>
 		static void RunMenu(int position)
 		{
 			ConsoleKey consoleKey;
@@ -65,6 +68,10 @@ namespace ByteApp
 			while (consoleKey != ConsoleKey.Escape);
 		}
 
+		/// <summary>
+		/// Рисует меню
+		/// </summary>
+		/// <param name="position">Позиция курсора</param>
 		static void DrawMenu(int position)
 		{
 			StringBuilder menu = new StringBuilder();
@@ -81,6 +88,9 @@ namespace ByteApp
 			Console.WriteLine(menu.ToString());
 		}
 
+		/// <summary>
+		/// Записывает в файл последовательность из пяти чисел
+		/// </summary>
 		static void WriteToFile()
 		{
 			Console.Clear();
@@ -114,6 +124,9 @@ namespace ByteApp
 			Console.ReadKey();
 		}
 
+		/// <summary>
+		/// Умножает числа на введенный множитель
+		/// </summary>
 		static void IncreaseNumbersInFile()
 		{
 			Console.Clear();
@@ -141,6 +154,9 @@ namespace ByteApp
 			Console.ReadKey();
 		}
 
+		/// <summary>
+		/// Считывает числа из файла в обратном порядке
+		/// </summary>
 		static void ReadReversedNumbers()
 		{
 			Console.Clear();
@@ -155,6 +171,9 @@ namespace ByteApp
 			Console.ReadKey();
 		}
 
+		/// <summary>
+		/// Создает 10 рандомных чисел и записывает в файл
+		/// </summary>
 		static void FillRandomNumbers()
 		{
 			Console.Clear();
@@ -174,6 +193,9 @@ namespace ByteApp
 			Console.ReadKey();
 		}
 
+		/// <summary>
+		/// Позволяет пользователю менять числа
+		/// </summary>
 		static void ChangeRandomNumbers()
 		{
 
@@ -230,6 +252,13 @@ namespace ByteApp
 			Console.ReadKey();
 		}
 
+		/// <summary>
+		/// Метод для корректного ввода целого числа
+		/// </summary>
+		/// <param name="name">Имя числа</param>
+		/// <param name="min">минимальное значение</param>
+		/// <param name="max">максимальное значение</param>
+		/// <returns></returns>
 		static int ReadInt(string name, int min, int max)
 		{
 			Console.WriteLine($"Input {name} in interval [{min}, {max}]:");
@@ -241,6 +270,8 @@ namespace ByteApp
 			return num;
 		}
 
+
+		
 		static void Main(string[] args)
 		{
 

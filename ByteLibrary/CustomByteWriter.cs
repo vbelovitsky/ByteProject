@@ -13,6 +13,11 @@ namespace ByteLibrary
 			writer = new BinaryWriter(BaseStream);
 		}
 
+		/// <summary>
+		/// Записывает массив значений
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="array"></param>
 		public void WriteArray<T>(T[] array) where T : struct
 		{
 			if (!CheckStructType(typeof(T)))
@@ -44,6 +49,12 @@ namespace ByteLibrary
 			}
 		}
 
+		/// <summary>
+		/// Записывает значение в указанное место (в разработке)
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="value"></param>
+		/// <param name="index"></param>
 		public void WriteValue<T>(T value, int index) where T : struct
 		{
 			if (!CheckStructType(typeof(T)))
@@ -73,6 +84,9 @@ namespace ByteLibrary
 			}
 		}
 
+		/// <summary>
+		/// Закрывает writer и поток
+		/// </summary>
 		public void Close()
 		{
 			try

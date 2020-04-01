@@ -13,6 +13,11 @@ namespace ByteLibrary
 			BaseStream = stream;
 		}
 
+		/// <summary>
+		/// Возвращает количество байтов в примитивном типе
+		/// </summary>
+		/// <param name="T"></param>
+		/// <returns></returns>
 		protected int GetByteCount(Type T)
 		{
 			switch (Type.GetTypeCode(T))
@@ -38,6 +43,11 @@ namespace ByteLibrary
 			}
 		}
 
+		/// <summary>
+		/// Проверяет, является ли тип примитивным
+		/// </summary>
+		/// <param name="T"></param>
+		/// <returns></returns>
 		protected static bool CheckStructType(Type T)
 		{
 			switch (Type.GetTypeCode(T))

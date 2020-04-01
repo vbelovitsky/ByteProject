@@ -10,6 +10,9 @@ namespace ByteLibrary
 	public class CustomByteReader : AbstractByte
 	{
 
+		/// <summary>
+		/// Можно получать
+		/// </summary>
 		public event OnReadValue OnRead;
 
 		private BinaryReader reader { get; set; }
@@ -20,6 +23,11 @@ namespace ByteLibrary
 			
 		}
 
+		/// <summary>
+		/// Считывает массив данных
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
 		public T[] ReadArray<T>() where T : struct
 		{
 			if (!CheckStructType(typeof(T)))
@@ -63,6 +71,11 @@ namespace ByteLibrary
 			return array.ToArray();
 		}
 
+		/// <summary>
+		/// Считывает данные наоборот
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
 		public T[] ReadReversedArray<T>() where T : struct
 		{
 			if (!CheckStructType(typeof(T)))
@@ -105,7 +118,11 @@ namespace ByteLibrary
 			return array.ToArray();
 		}
 
-
+		/// <summary>
+		/// Считывает значение из reader
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
 		private dynamic ReadValue<T>() where T : struct
 		{
 			
@@ -132,6 +149,9 @@ namespace ByteLibrary
 			}
 		}
 
+		/// <summary>
+		/// Закрывает writer и поток
+		/// </summary>
 		public void Close()
 		{
 			try
