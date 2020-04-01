@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security;
 using System.Text;
 using ByteLibrary;
 
@@ -93,14 +94,44 @@ namespace ByteApp
             Console.WriteLine(menu.ToString());
         }
 
+        private static FileStream fileStream;
+        private static CustomByteReader reader;
+        private static CustomByteWriter writer;
+        static void InitIO()
+        {
+            try
+            {
+                fileStream = new FileStream(FILE_PATH, FileMode.OpenOrCreate);
+                writer = new CustomByteWriter(fileStream);
+                reader = new CustomByteReader(fileStream);
+
+                fileStream.Seek(0, SeekOrigin.Begin);
+            }
+            catch (IOException)
+            {
+                Console.Error.WriteLine("io: Unable to create file stream due to an i/o error, exiting...");
+            }
+            catch (SecurityException)
+            {
+                Console.Error.WriteLine("security: Not enough permissions to open stream on this file, exiting...");
+            }
+            catch (ArgumentException)
+            {
+                Console.Error.WriteLine("env: Output file path given incorrectly, exiting...");
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine($"error: {e.Message}");
+            }
+        }
         /// <summary>
         /// Записывает в файл последовательность из пяти чисел
         /// </summary>
         static void WriteToFile()
         {
+            fileStream.Seek(0, SeekOrigin.Begin);
+            
             Console.Clear();
-            FileStream fileStream = new FileStream(FILE_PATH, FileMode.Create);
-            CustomByteWriter writer = new CustomByteWriter(fileStream);
 
             int[] arr = new int[5];
             for (int i = 0; i < arr.Length; i++)
@@ -109,7 +140,7 @@ namespace ByteApp
             }
 
             writer.WriteArray(arr);
-            writer.Close();
+            writer.Flush();
             Console.WriteLine($"Numbers are written to a file: {string.Join(" ", arr)}");
             Console.Write("Press any button to return to menu: ");
             Console.ReadKey();
@@ -117,13 +148,11 @@ namespace ByteApp
 
         static void ReadFromFile()
         {
+            fileStream.Seek(0, SeekOrigin.Begin);
             Console.Clear();
-            FileStream fileStream = new FileStream(FILE_PATH, FileMode.Open);
-            CustomByteReader reader = new CustomByteReader(fileStream);
 
             int[] arr = reader.ReadArray<int>();
 
-            reader.Close();
             Console.WriteLine(string.Join(" ", arr));
             Console.Write("Press any button to return to menu: ");
             Console.ReadKey();
@@ -135,16 +164,11 @@ namespace ByteApp
         static void IncreaseNumbersInFile()
         {
             Console.Clear();
-            FileStream fileStream = new FileStream(FILE_PATH, FileMode.Open);
-            CustomByteReader reader = new CustomByteReader(fileStream);
+            fileStream.Seek(0, SeekOrigin.Begin);
             int[] arr = reader.ReadArray<int>();
-            reader.Close();
             Console.WriteLine($"Initial numbers: {string.Join(" ", arr)}");
 
-
-            fileStream = new FileStream(FILE_PATH, FileMode.Create);
-            CustomByteWriter writer = new CustomByteWriter(fileStream);
-
+            fileStream.Seek(0, SeekOrigin.Begin);
             int multiplier = ReadInt("multiplier", -10, 10);
             for (int i = 0; i < arr.Length; i++)
             {
@@ -153,7 +177,7 @@ namespace ByteApp
 
             Console.WriteLine($"Increased numbers: {string.Join(" ", arr)}");
             writer.WriteArray(arr);
-            writer.Close();
+            writer.Flush();
 
             Console.Write("Press any button to return to menu: ");
             Console.ReadKey();
@@ -165,12 +189,10 @@ namespace ByteApp
         static void ReadReversedNumbers()
         {
             Console.Clear();
-            FileStream fileStream = new FileStream(FILE_PATH, FileMode.Open);
-            CustomByteReader reader = new CustomByteReader(fileStream);
+            fileStream.Seek(0, SeekOrigin.Begin);
 
             int[] arr = reader.ReadReversedArray<int>();
 
-            reader.Close();
             Console.WriteLine(string.Join(" ", arr));
             Console.Write("Press any button to return to menu: ");
             Console.ReadKey();
@@ -182,17 +204,14 @@ namespace ByteApp
         static void FillRandomNumbers()
         {
             Console.Clear();
-            FileStream fileStream = new FileStream(FILE_PATH_2, FileMode.Create);
-            CustomByteWriter writer = new CustomByteWriter(fileStream);
+            fileStream.Seek(0, SeekOrigin.Begin);
 
             int[] arr = new int[10];
             for (int i = 0; i < arr.Length; i++)
-            {
                 arr[i] = rnd.Next(1, 101);
-            }
 
             writer.WriteArray(arr);
-            writer.Close();
+            writer.Flush();
             Console.WriteLine($"Random numbers are written to a file: {string.Join(" ", arr)}");
             Console.Write("Press any button to return to menu: ");
             Console.ReadKey();
@@ -207,45 +226,35 @@ namespace ByteApp
             {
                 Console.Clear();
 
-                FileStream fileStream = new FileStream(FILE_PATH_2, FileMode.Open);
-                CustomByteReader reader = new CustomByteReader(fileStream);
+                fileStream.Seek(0, SeekOrigin.Begin);
                 int[] arr = reader.ReadArray<int>();
                 Console.WriteLine(string.Join(" ", arr));
-                reader.Close();
 
                 int userNum = ReadInt("number", 1, 100);
                 int[] minDist = new int[arr.Length];
                 for (int i = 0; i < arr.Length; i++)
-                {
                     minDist[i] = Math.Abs(arr[i] - userNum);
-                }
 
                 int valueMinDist = int.MaxValue;
                 int valueMinDistIndex = -1;
                 for (int i = 0; i < minDist.Length; i++)
-                {
                     if (minDist[i] < valueMinDist)
                     {
                         valueMinDistIndex = i;
                         valueMinDist = minDist[i];
                     }
-                }
 
                 arr[valueMinDistIndex] = userNum;
 
                 // Write changes
-                fileStream = new FileStream(FILE_PATH_2, FileMode.Create);
-                CustomByteWriter writer = new CustomByteWriter(fileStream);
                 writer.WriteArray(arr);
-                writer.Close();
+                writer.Flush();
 
 
                 // Read again
-                fileStream = new FileStream(FILE_PATH_2, FileMode.Open);
-                reader = new CustomByteReader(fileStream);
+                fileStream.Seek(0, SeekOrigin.Begin);
                 arr = reader.ReadArray<int>();
-                Console.WriteLine($"Modifyed nums: {string.Join(" ", arr)}");
-                reader.Close();
+                Console.WriteLine($"Modified nums: {string.Join(" ", arr)}");
 
 
                 Console.WriteLine("Press Esc button to exit modifying: ");
@@ -268,9 +277,7 @@ namespace ByteApp
             Console.WriteLine($"Input {name} in interval [{min}, {max}]:");
             int num;
             while (!(int.TryParse(Console.ReadLine(), out num) && num >= min && num <= max))
-            {
                 Console.WriteLine("Try again:");
-            }
 
             return num;
         }
@@ -283,7 +290,8 @@ namespace ByteApp
             do
             {
                 Console.Clear();
-
+                InitIO();
+                
                 RunMenu(0);
 
                 Console.Clear();
